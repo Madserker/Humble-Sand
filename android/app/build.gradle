@@ -50,11 +50,27 @@ android {
         versionName flutterVersionName
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            /*keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']*/
+        }
+    }
+
+    flavorDimensions "environment"
+    productFlavors {
+        dev {
+            applicationId "com.example.humble_sand.dev"
+            dimension "environment"
+            resValue "string", "app_name", "humble_sand dev"
+        }
+        prod {
+            applicationId "com.example.humble_sand"
+            dimension "environment"
+            resValue "string", "app_name", "humble_sand"
+            signingConfig signingConfigs.release
         }
     }
 }
